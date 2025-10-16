@@ -1,6 +1,6 @@
 # AskAnything in Charts - Powered by Qwen 2.5
 
-An interactive demo comparing a fine-tuned Qwen 2.5 7B vision-language model with the base model for chart understanding tasks. Finetuned adapted for pinpoint answer for question on ChartQA benchmark. The model is trained on the ChartQA dataset to better understand and answer questions about charts and graphs.
+LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart understanding tasks. Finetuned adapted for pinpoint answer for question on ChartQA benchmark. The model is trained on the ChartQA dataset to better understand and answer questions about charts and graphs.
 
 **Author:** [Prakash Chandra Chhipa](https://github.com/prakashchhipa)  
 **Portfolio:** [prakashchhipa.github.io](https://prakashchhipa.github.io)  
@@ -31,52 +31,6 @@ An interactive demo comparing a fine-tuned Qwen 2.5 7B vision-language model wit
 | **Qwen 2.5 7B + LORA SFT** | **60.0%** | **+2.5%** |
 
 ---
-
-## 🎨 Example Improvements
-
-### Example 1: Label Recognition
-
-| | |
-|---|---|
-| **Question** | Which answer response has the highest value on this graph? |
-| ❌ **Base Model** | 53 |
-| ✅ **Fine-tuned** | Disapprove |
-| ✓ **Ground Truth** | Disapprove |
-
-The base model returned a number instead of the label!
-
-### Example 2: Color Identification
-
-| | |
-|---|---|
-| **Question** | What segment represent by dark grey color? |
-| ❌ **Base Model** | Neither/Other |
-| ✅ **Fine-tuned** | Both |
-| ✓ **Ground Truth** | Both |
-
-The fine-tuned model correctly identified the chart segment.
-
-### Example 3: Statistical Calculation
-
-| | |
-|---|---|
-| **Question** | What's the median value of the green bars? |
-| ❌ **Base Model** | 59 |
-| ✅ **Fine-tuned** | 19 |
-| ✓ **Ground Truth** | 19 |
-
-The fine-tuned model correctly calculated the median.
-
-### Example 4: Counting
-
-| | |
-|---|---|
-| **Question** | How many bars have value less than 1? |
-| ❌ **Base Model** | 4 |
-| ✅ **Fine-tuned** | 5 |
-| ✓ **Ground Truth** | 5 |
-
-Accurate counting is crucial for chart understanding!
 
 ---
 
@@ -354,8 +308,6 @@ If you use this model or code in your research, please cite:
 
 For questions or feedback:
 - Open an issue on GitHub
-- Email: [your-email]
-- Twitter: [@your-handle]
 
 ---
 
