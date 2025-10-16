@@ -6,10 +6,12 @@ LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart 
 **Portfolio:** [prakashchhipa.github.io](https://prakashchhipa.github.io)  
 **GitHub:** [AskAnythingInCharts-Qwen2.5-7B](https://github.com/prakashchhipa/AskAnythingInCharts-Qwen2.5-7B)
 
-## 🎬 Demo
+## 🚀 Try It Live
 
-### Static Comparison
-![Demo](demo_comparison.png)
+- **🎨 Interactive Demo:** [HuggingFace Spaces](https://huggingface.co/spaces/prakashchhipa/chart-qa-demo-qwen2.5)
+- **🤗 Model Card:** [HuggingFace Hub](https://huggingface.co/prakashchhipa/Qwen2.5-VL-7B-ChartQA-LoRA)
+
+## 🎬 Demo
 
 ### Animated Demo
 ![Animated Demo](demo_animation.gif)
@@ -19,6 +21,15 @@ LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart 
   <img src="https://img.shields.io/badge/Dataset-ChartQA-green" alt="Dataset">
   <img src="https://img.shields.io/badge/Accuracy-60.0%25-brightgreen" alt="Accuracy">
   <img src="https://img.shields.io/badge/Framework-HuggingFace-orange" alt="Framework">
+</p>
+
+<p align="center">
+  <a href="https://huggingface.co/spaces/prakashchhipa/chart-qa-demo-qwen2.5">
+    <img src="https://img.shields.io/badge/🎨_Try_Demo-HuggingFace_Spaces-blue?style=for-the-badge" alt="Try Demo">
+  </a>
+  <a href="https://huggingface.co/prakashchhipa/Qwen2.5-VL-7B-ChartQA-LoRA">
+    <img src="https://img.shields.io/badge/🤗_Model-HuggingFace_Hub-green?style=for-the-badge" alt="Model Card">
+  </a>
 </p>
 
 ---
