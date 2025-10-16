@@ -6,6 +6,14 @@ An interactive demo comparing a fine-tuned Qwen 2.5 7B vision-language model wit
 **Portfolio:** [prakashchhipa.github.io](https://prakashchhipa.github.io)  
 **GitHub:** [AskAnythingInCharts-Qwen2.5-7B](https://github.com/prakashchhipa/AskAnythingInCharts-Qwen2.5-7B)
 
+## 🎬 Demo
+
+### Static Comparison
+![Demo](demo_comparison.png)
+
+### Animated Demo
+![Animated Demo](demo_animation.gif)
+
 <p align="center">
   <img src="https://img.shields.io/badge/Model-Qwen2.5--VL--7B-blue" alt="Model">
   <img src="https://img.shields.io/badge/Dataset-ChartQA-green" alt="Dataset">
