@@ -1,6 +1,6 @@
 # AskAnything in Charts - Powered by Qwen 2.5
 
-An interactive demo comparing a fine-tuned Qwen 2.5 7B vision-language model with the base model for chart understanding tasks. Finetuned adapted for pinpoint answer for question on ChartQA benchmark. The model is trained on the ChartQA dataset to better understand and answer questions about charts and graphs.
+LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart understanding tasks. Finetuned adapted for pinpoint answer for question on ChartQA benchmark. The model is trained on the ChartQA dataset to better understand and answer questions about charts and graphs.
 
 **Author:** [Prakash Chandra Chhipa](https://github.com/prakashchhipa)  
 **Portfolio:** [prakashchhipa.github.io](https://prakashchhipa.github.io)  
@@ -300,8 +300,6 @@ If you use this model or code in your research, please cite:
 
 For questions or feedback:
 - Open an issue on GitHub
-- Email: [your-email]
-- Twitter: [@your-handle]
 
 ---
 
