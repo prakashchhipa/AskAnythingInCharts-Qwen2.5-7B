@@ -8,9 +8,6 @@ LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart 
 
 ## 🎬 Demo
 
-### Static Comparison
-![Demo](demo_comparison.png)
-
 ### Animated Demo
 ![Animated Demo](demo_animation.gif)
 
