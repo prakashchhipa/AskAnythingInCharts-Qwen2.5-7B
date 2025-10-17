@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Curated ChartQA Demo Examples</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        .summary { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; 
+            padding: 20px; 
+            border-radius: 12px; 
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .example { 
+            background: white; 
+            padding: 25px; 
+            margin: 25px 0; 
+            border-radius: 12px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .example:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .example img { 
+            max-width: 700px; 
+            border: 2px solid #e0e0e0; 
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .question { 
+            font-weight: bold; 
+            color: #2c3e50; 
+            margin: 15px 0;
+            font-size: 18px;
+        }
+        .ground-truth { 
+            color: #27ae60; 
+            margin: 10px 0;
+            padding: 10px;
+            background: #e8f5e9;
+            border-left: 4px solid #27ae60;
+            border-radius: 4px;
+        }
+        .base-pred { 
+            color: #e74c3c; 
+            margin: 10px 0;
+            padding: 10px;
+            background: #ffebee;
+            border-left: 4px solid #e74c3c;
+            border-radius: 4px;
+        }
+        .trained-pred { 
+            color: #2196f3; 
+            margin: 10px 0;
+            padding: 10px;
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .label { font-weight: bold; }
+        .index { 
+            color: #666; 
+            font-size: 14px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 Curated ChartQA Demo Examples</h1>
+    <div class="summary">
+        <h2 style="margin-top: 0;">🎯 Hand-Picked Improvements</h2>
+        <p style="font-size: 18px; margin: 10px 0;">
+            <strong>8 carefully selected examples</strong> 
+            showing clear improvements from fine-tuning
+        </p>
+        <p style="margin: 5px 0;">✓ Base model was wrong</p>
+        <p style="margin: 5px 0;">✓ Fine-tuned model got it right</p>
+        <p style="margin: 5px 0;">✓ Clear, demonstrable differences</p>
+    </div>
+
+    <div class="example">
+        <h3>Example 1 <span class="index">(Dataset Index: 191)</span></h3>
+        <img src="example_0000.png" alt="Chart">
+        <div class="question"><span class="label">❓ Question:</span> Which region saw the highest proportion of accreditation over the given years?</div>
+        <div class="ground-truth"><span class="label">✓ Ground Truth:</span> Southern Asia</div>
+        <div class="base-pred"><span class="label">❌ Base Model:</span> Eastern Asia (excluding Japan)</div>
+        <div class="trained-pred"><span class="label">✅ Fine-tuned Model:</span> Southern Asia</div>
+    </div>
+
+    <div class="example">
+        <h3>Example 2 <span class="index">(Dataset Index: 267)</span></h3>
+        <img src="example_0001.png" alt="Chart">
+        <div class="question"><span class="label">❓ Question:</span> What's the median value of the green bars?</div>
+        <div class="ground-truth"><span class="label">✓ Ground Truth:</span> 19</div>
+        <div class="base-pred"><span class="label">❌ Base Model:</span> 59</div>
+        <div class="trained-pred"><span class="label">✅ Fine-tuned Model:</span> 19</div>
+    </div>
+
+    <div class="example">
+        <h3>Example 3 <span class="index">(Dataset Index: 317)</span></h3>
+        <img src="example_0002.png" alt="Chart">
+        <div class="question"><span class="label">❓ Question:</span> Is the Very value in All voters more than Somewhat in All voters?</div>
+        <div class="ground-truth"><span class="label">✓ Ground Truth:</span> No</div>
+        <div class="base-pred"><span class="label">❌ Base Model:</span> Yes</div>
+        <div class="trained-pred"><span class="label">✅ Fine-tuned Model:</span> No</div>
+    </div>
+
+    <div class="example">
+        <h3>Example 4 <span class="index">(Dataset Index: 360)</span></h3>
+        <img src="example_0003.png" alt="Chart">
+        <div class="question"><span class="label">❓ Question:</span> How many categories are there in the chart??</div>
+        <div class="ground-truth"><span class="label">✓ Ground Truth:</span> 8</div>
+        <div class="base-pred"><span class="label">❌ Base Model:</span> 9</div>
+        <div class="trained-pred"><span class="label">✅ Fine-tuned Model:</span> 8</div>
+    </div>
+
+    <div class="example">
+        <h3>Example 5 <span class="index">(Dataset Index: 391)</span></h3>
+        <img src="example_0004.png" alt="Chart">
+        <div class="question"><span class="label">❓ Question:</span> What's the difference between two bars?</div>
+        <div class="ground-truth"><span class="label">✓ Ground Truth:</span> 0.044</div>
+        <div class="base-pred"><span class="label">❌ Base Model:</span> The blue bar (Argentina) is higher than the red bar (Russia), indicating a higher percentage of GDP spent on early childhood education in Argentina compared to Russia in 2012.</div>
+        <div class="trained-pred"><span class="label">✅ Fine-tuned Model:</span> 0.044</div>
+    </div>
+
+    <div class="example">
+        <h3>Example 6 <span class="index">(Dataset Index: 393)</span></h3>
+        <img src="example_0005.png" alt="Chart">
+        <div class="question"><span class="label">❓ Question:</span> Is the median value of all bars greater than 500?</div>
+        <div class="ground-truth"><span class="label">✓ Ground Truth:</span> No</div>
+        <div class="base-pred"><span class="label">❌ Base Model:</span> Yes</div>
+        <div class="trained-pred"><span class="label">✅ Fine-tuned Model:</span> No</div>
+    </div>
+
+    <div class="example">
+        <h3>Example 7 <span class="index">(Dataset Index: 471)</span></h3>
+        <img src="example_0006.png" alt="Chart">
+        <div class="question"><span class="label">❓ Question:</span> What percentage we get , if we add red and grey color?</div>
+        <div class="ground-truth"><span class="label">✓ Ground Truth:</span> 27</div>
+        <div class="base-pred"><span class="label">❌ Base Model:</span> 5.4%</div>
+        <div class="trained-pred"><span class="label">✅ Fine-tuned Model:</span> 27.4</div>
+    </div>
+
+    <div class="example">
+        <h3>Example 8 <span class="index">(Dataset Index: 495)</span></h3>
+        <img src="example_0007.png" alt="Chart">
+        <div class="question"><span class="label">❓ Question:</span> What is the difference between Home Furnishings and Domestics merchandise as a share of Bed Bath & Beyond sales worldwide in the year 2020?</div>
+        <div class="ground-truth"><span class="label">✓ Ground Truth:</span> 31</div>
+        <div class="base-pred"><span class="label">❌ Base Model:</span> Home furnishings accounted for 65% of Bed Bath & Beyond's sales, while domestics merchandise made up 34%.</div>
+        <div class="trained-pred"><span class="label">✅ Fine-tuned Model:</span> 31.4</div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding: 20px; color: #666;">
+        <p style="font-size: 14px;">Generated for demo purposes</p>
+    </div>
+</body>
+</html>

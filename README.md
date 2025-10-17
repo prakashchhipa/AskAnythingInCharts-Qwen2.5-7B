@@ -19,7 +19,7 @@ LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart 
 <p align="center">
   <img src="https://img.shields.io/badge/Model-Qwen2.5--VL--7B-blue" alt="Model">
   <img src="https://img.shields.io/badge/Dataset-ChartQA-green" alt="Dataset">
-  <img src="https://img.shields.io/badge/Accuracy-60.0%25-brightgreen" alt="Accuracy">
+  <img src="https://img.shields.io/badge/Accuracy-66.0%25-brightgreen" alt="Accuracy">
   <img src="https://img.shields.io/badge/Framework-HuggingFace-orange" alt="Framework">
 </p>
 
@@ -39,7 +39,7 @@ LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart 
 | Model | ChartQA Accuracy | Improvement |
 |-------|------------------|-------------|
 | Qwen 2.5 7B | **57.5%** | - |
-| **Qwen 2.5 7B + LORA SFT** | **60.0%** | **+2.5%** |
+| **Qwen 2.5 7B + LORA SFT** | **66.0%** | **+8.5%** |
 
 ---
 
@@ -62,7 +62,7 @@ cd openvision-assistant
 pip install -r requirements_demo.txt
 
 # 3. Download the fine-tuned adapter (if not included)
-# Make sure outputs/qwen2_5_vl_7b_sft_chart_text_oct15_e2/ exists
+# Make sure outputs/qwen2_5_vl_7b_lora_rank64_e6/ exists
 
 # 4. Run the Gradio demo
 python app.py
@@ -83,10 +83,10 @@ base_model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
     torch_dtype="bfloat16",
     device_map="auto"
 )
-model = PeftModel.from_pretrained(base_model, "outputs/qwen2_5_vl_7b_sft_chart_text_oct15_e2")
+model = PeftModel.from_pretrained(base_model, "prakashchhipa/Qwen2.5-VL-7B-ChartQA-LoRA")
 model = model.merge_and_unload()
 
-processor = AutoProcessor.from_pretrained("outputs/qwen2_5_vl_7b_sft_chart_text_oct15_e2")
+processor = AutoProcessor.from_pretrained("prakashchhipa/Qwen2.5-VL-7B-ChartQA-LoRA")
 
 # Inference
 image = Image.open("chart.png")
@@ -133,7 +133,10 @@ The fine-tuned model shows better performance in:
 ### Training Setup
 - **Dataset**: ChartQA (chart understanding benchmark)
 - **Training Samples**: ~50-200 samples per epoch
-- **Epochs**: 2
+- **Epochs**: 6
+- **Learning Rate**: 4e-5
+- **LoRA Rank**: 64
+- **LoRA Alpha**: 16
 - **Hardware**: GPU with 16GB+ VRAM
 - **Framework**: HuggingFace Transformers + PEFT + DeepSpeed
 
@@ -161,7 +164,7 @@ openvision-assistant/
 ├── src/
 │   └── train_vlm_sft.py                # Training script
 └── outputs/
-    └── qwen2_5_vl_7b_sft_chart_text_oct15_e2/  # Fine-tuned weights
+    └── qwen2_5_vl_7b_lora_rank64_e6/  # Fine-tuned weights
 ```
 
 ---
@@ -173,7 +176,7 @@ openvision-assistant/
 ```bash
 python evaluations/eval_chartqa.py \
   --base_model Qwen/Qwen2.5-VL-7B-Instruct \
-  --adapter outputs/qwen2_5_vl_7b_sft_chart_text_oct15_e2 \
+  --adapter prakashchhipa/Qwen2.5-VL-7B-ChartQA-LoRA \
   --limit 500 \
   --compare_both
 ```
@@ -183,7 +186,7 @@ python evaluations/eval_chartqa.py \
 ```bash
 python find_improved_examples.py \
   --base_model Qwen/Qwen2.5-VL-7B-Instruct \
-  --adapter outputs/qwen2_5_vl_7b_sft_chart_text_oct15_e2 \
+  --adapter prakashchhipa/Qwen2.5-VL-7B-ChartQA-LoRA \
   --limit 500 \
   --output_dir demo_chatqa
 ```
