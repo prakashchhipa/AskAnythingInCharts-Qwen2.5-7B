@@ -190,9 +190,9 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Chart QA: Base vs Fine-tuned") as 
     Compare the base model with the fine-tuned version side-by-side!
     
     ### 🎯 Results
-    - **Qwen 2.5 7B:** 57.5%
-    - **Qwen 2.5 7B + LORA:** 60.0%
-    - **Improvement:** +2.5%
+    - **Qwen 2.5 7B base:** 57.5%
+    - **AskAnythingInCharts-Qwen2.5 7B:** 66.0%
+    - **Improvement:** +8.5%
     
     ### How to use:
     1. Upload a chart/graph image or select an example
@@ -221,12 +221,12 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Chart QA: Base vs Fine-tuned") as 
             
             with gr.Row():
                 base_output = gr.Textbox(
-                    label="Qwen 2.5 7B",
+                    label="Qwen2.5 7B base",
                     lines=4,
                     interactive=False
                 )
                 finetuned_output = gr.Textbox(
-                    label="Qwen 2.5 7B + LORA SFT",
+                    label="AskAnythingInCharts-Qwen2.5 7B",
                     lines=4,
                     interactive=False
                 )
@@ -265,10 +265,16 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Chart QA: Base vs Fine-tuned") as 
     if EXAMPLE_DATA and len(EXAMPLE_DATA) >= 3:
         gr.Examples(
             examples=[
-                ["demo_curated/example_0000.png", "Which region saw the highest proportion of accreditation over the given years?"],
-                ["demo_curated/example_0001.png", "What's the median value of the green bars?"],
-                ["demo_curated/example_0002.png", "Is the Very value in All voters more than Somewhat in All voters?"],
-                ["scatter_temp_energy.png", "Which point does not follow correlation?"],
+                ["stacked_students.png", "Which department is having higher male student than Physics and but lower than Math?"],
+                ["demo_curated/example_0000.png", "What does the blue line represent?"],
+                ["demo_curated/example_0001.png", "Which answer response has the highest value on this graph?"],
+                ["demo_curated/example_0010.png", "What is the average of '24 hours' and '48 hours'?"],
+                ["demo_curated/example_0018.png", "What is the difference of Sweden and Malta?"],
+                ["demo_curated/example_0022.png", "What is the average of smallest two bars?"],
+                ["demo_curated/example_0034.png", "What is the color of the shortest bar?"],
+                ["demo_curated/example_0035.png", "How many lines are shown in the chart?"],
+                ["demo_curated/example_0039.png", "In how many years the share of youth not in education is more than 20 %?"],
+                ["demo_curated/example_0041.png", "How many regions have more than 60 % proportions that applied for accreditation?"],
             ],
             inputs=[image_input, question_input],
             label="Quick Start Examples"
