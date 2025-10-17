@@ -1,6 +1,6 @@
 # AskAnything in Charts - Powered by Qwen 2.5
 
-LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart understanding tasks. Finetuned adapted for pinpoint answer for question on ChartQA benchmark. The model is trained on the ChartQA dataset to better understand and answer questions about charts and graphs.
+LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart understanding tasks. Finetuned adapted for pinpoint answer for question on ChartQA benchmark, acheiving 8% improvmeent. The model is trained on the ChartQA dataset to better understand and answer questions about charts and graphs.
 
 **Author:** [Prakash Chandra Chhipa](https://github.com/prakashchhipa)  
 **Portfolio:** [prakashchhipa.github.io](https://prakashchhipa.github.io)  
