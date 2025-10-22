@@ -22,8 +22,12 @@ data/
 cache/
 outputs/
 *.csv
-*.json
 *.pkl
+
+# Exclude specific JSON files but allow config files
+*.log.json
+results.json
+demo_*.json
 
 # Jupyter
 .ipynb_checkpoints/

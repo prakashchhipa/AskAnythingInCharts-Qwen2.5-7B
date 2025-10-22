@@ -1,0 +1,25 @@
+{
+  "output_dir": "outputs/qwen2_5_vl_7b_sft",
+  "num_train_epochs": 5,
+  "per_device_train_batch_size": 1,
+  "per_device_eval_batch_size": 1,
+  "gradient_accumulation_steps": 8,
+  "bf16": true,
+  "learning_rate": 5e-5,
+  "lr_scheduler_type": "cosine",
+  "logging_steps": 10,
+  "eval_strategy": "steps",
+  "eval_steps": 500,
+  "save_strategy": "steps",
+  "save_steps": 500,
+  "save_total_limit": 3,
+  "load_best_model_at_end": true,
+  "metric_for_best_model": "loss",
+  "warmup_ratio": 0.05,
+  "weight_decay": 0.01,
+  "optim": "adamw_torch_fused",
+  "max_grad_norm": 0.3,
+  "deepspeed": "configs/ds_zero3.json",
+  "gradient_checkpointing_kwargs": { "use_reentrant": false }
+}
+
