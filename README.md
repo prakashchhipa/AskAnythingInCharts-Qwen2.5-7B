@@ -49,26 +49,44 @@ LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart 
 
 ### Option 1: Online Demo (HuggingFace Spaces)
 
-**Coming Soon:** [Your HF Space URL]
+- **🎨 Interactive Demo:** [HuggingFace Spaces](https://huggingface.co/spaces/prakashchhipa/chart-qa-demo-qwen2.5)
 
 ### Option 2: Run Locally
 
 ```bash
 # 1. Clone the repository
-git clone [your-repo-url]
-cd openvision-assistant
+git clone https://github.com/prakashchhipa/AskAnythingInCharts-Qwen2.5-7B.git
+cd AskAnythingInCharts-Qwen2.5-7B
 
 # 2. Install dependencies
-pip install -r requirements_demo.txt
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+pip install transformers datasets accelerate peft trl deepspeed
+pip install pillow wandb gradio
 
-# 3. Download the fine-tuned adapter (if not included)
-# Make sure outputs/qwen2_5_vl_7b_lora_rank64_e6/ exists
+# 3. Download ChartQA dataset
+# You need to download the ChartQA dataset manually:
+# - data/chartqa_train.json (training data)
+# - data/images/ (chart images directory)
+# Place these in the project root directory
 
 # 4. Run the Gradio demo
-python app.py
+python src/app_gradio.py
 ```
 
 Open your browser at `http://localhost:7860`
+
+### Option 3: Train Your Own Model
+
+```bash
+# 1. Set up environment (same as above)
+
+# 2. Download ChartQA dataset (same as above)
+
+# 3. Run training - cache will be built automatically
+bash scripts/run_train_best_r64.sh
+```
+
+**Note:** The training script will automatically build the cache directory (`cache/sft_chartqa_textvqa/`) on first run. This may take some time but will speed up subsequent training runs.
 
 ### Option 3: Use the Model Directly
 
@@ -101,6 +119,68 @@ messages = [
 
 text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
 # ... (process vision info and generate)
+```
+
+---
+
+## 📊 Data Setup & Cache Management
+
+### Required Data Files
+
+This repository does **NOT** include the training data due to size constraints. You need to download the ChartQA dataset separately:
+
+1. **Download ChartQA Dataset:**
+   - Visit the [ChartQA GitHub repository](https://github.com/vis-nlp/ChartQA)
+   - Download the training data and images
+   - Place them in your project directory:
+     ```
+     data/
+     ├── chartqa_train.json    # Training annotations
+     └── images/               # Chart images directory
+     ```
+
+2. **Dataset Structure:**
+   ```
+   data/
+   ├── chartqa_train.json      # ~50K training examples
+   └── images/                 # Chart images (PNG files)
+       ├── train/
+       │   ├── 0000.png
+       │   ├── 0001.png
+       │   └── ...
+       └── val/
+           ├── 0000.png
+           └── ...
+   ```
+
+### Cache System
+
+The training script uses a smart caching system to speed up subsequent runs:
+
+- **First Run:** Automatically builds cache in `cache/sft_chartqa_textvqa/`
+- **Subsequent Runs:** Uses preprocessed cache for faster training
+- **Cache Contents:** Preprocessed datasets, tokenized data, image features
+- **Cache Size:** ~2-5GB (excluded from git repository)
+
+**Cache Management:**
+```bash
+# Rebuild cache (if you want fresh preprocessing)
+bash scripts/run_train_best_r64.sh --rebuild_cache
+
+# Clear cache (if you want to start fresh)
+rm -rf cache/
+```
+
+### Environment Variables
+
+For distributed training, set these environment variables:
+
+```bash
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_DEBUG=WARN
+export NCCL_NVLS_ENABLE=0
+export NCCL_IB_DISABLE=1
+export NCCL_P2P_DISABLE=1
 ```
 
 ---
@@ -150,22 +230,36 @@ The fine-tuned model shows better performance in:
 ## 📁 Repository Structure
 
 ```
-openvision-assistant/
-├── app.py                              # Gradio interactive demo
-├── requirements_demo.txt               # Demo dependencies
-├── find_improved_examples.py           # Find improved examples
-├── filter_genuine_improvements.py      # Filter genuine improvements
-├── demo_genuine/                       # Genuine improvement examples
-│   ├── results.json
-│   ├── example_*.png
-│   └── genuine_improvements.html
+AskAnythingInCharts-Qwen2.5-7B/
+├── src/                                # Source code
+│   ├── train_vlm_sft.py               # Main training script
+│   ├── datasets_build.py              # Dataset building utilities
+│   ├── app_gradio.py                  # Gradio demo interface
+│   ├── agent_infer.py                 # Inference agent
+│   ├── infer_cli.py                   # CLI inference tool
+│   ├── export_merge_lora.py           # LoRA export utilities
+│   ├── prepare_data.py                # Data preparation
+│   └── ocr_tool.py                    # OCR utilities
+├── scripts/
+│   └── run_train_best_r64.sh          # Training script with best config
+├── configs/
+│   ├── sft_config_rank64.json         # Training configuration
+│   └── ds_zero3.json                  # DeepSpeed configuration
 ├── evaluations/
-│   └── eval_chartqa.py                 # Evaluation script
-├── src/
-│   └── train_vlm_sft.py                # Training script
-└── outputs/
-    └── qwen2_5_vl_7b_lora_rank64_e6/  # Fine-tuned weights
+│   └── eval_chartqa.py                # Evaluation script
+├── find_improved_examples.py          # Find improved examples
+├── filter_genuine_improvements.py     # Filter genuine improvements
+├── data/                              # Dataset (not included in repo)
+│   ├── chartqa_train.json            # Training annotations
+│   └── images/                        # Chart images
+├── cache/                             # Preprocessed cache (not in repo)
+│   └── sft_chartqa_textvqa/          # Cached datasets
+├── outputs/                           # Model outputs (not in repo)
+│   └── qwen2_5_vl_7b_lora_rank64_e6/ # Trained model weights
+└── README.md                          # This file
 ```
+
+**Note:** `data/`, `cache/`, and `outputs/` directories are excluded from the repository due to size constraints. They will be created automatically when you run the training script.
 
 ---
 
