@@ -14,7 +14,7 @@ LORA Fine-tuned Qwen 2.5 7B vision-language model with the base model for chart 
 ## 🎬 Demo
 
 ### Animated Demo
-![Animated Demo](demo_animation.gif)
+![Animated Demo](demo.gif)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Model-Qwen2.5--VL--7B-blue" alt="Model">
